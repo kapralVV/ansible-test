@@ -1,4 +1,7 @@
 ---
+- fail: msg="The server is not running on Ubuntu"
+  when: ansible_distribution != 'Ubuntu'
+
 - name: update
   apt: update_cache=yes upgrade=dist
   sudo: true
