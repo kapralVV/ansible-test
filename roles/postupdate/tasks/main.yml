@@ -1,0 +1,6 @@
+---
+- name: get the time when the system is up
+  shell: uptime -s
+  register: upTime
+
+- debug: var=upTime.stdout
