@@ -1,0 +1,13 @@
+---
+- name: update
+  apt: update_cache=yes upgrade=dist
+  sudo: true
+
+- name: check whether the system reboot is required
+  stat: path=/var/run/reboot-required
+  register: statReboot
+
+- include: reboot.yml
+  when: statReboot.stat.exists == true
+  tags:
+    - reboot

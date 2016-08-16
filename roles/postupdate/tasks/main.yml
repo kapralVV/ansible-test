@@ -1,6 +1,10 @@
 ---
-- name: get the time when the system is up
-  shell: uptime -s
+- name: get uptime
+  shell: awk '{print $1}' /proc/uptime
   register: upTime
+  tags:
+    - uptime
 
-- debug: var=upTime.stdout
+- debug: msg="uptime {{ upTime.stdout }} seconds"
+  tags:
+    - uptime
